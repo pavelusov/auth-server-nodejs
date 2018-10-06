@@ -11,6 +11,10 @@ exports.signup = (req, res, next) => {
       return next(err);
     }
 
+    if (!email || !password) {
+      return res.status(422).send({error: 'Вы должны указать email и пароль'})
+    }
+
     // Если пользователь с таким email существует, вернуть ошибку
     if (existingUser) {
       return res.status(422).send({error: 'Email уже используется'});
