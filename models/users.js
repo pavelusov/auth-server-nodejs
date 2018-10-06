@@ -11,3 +11,8 @@ const userSchema = new Schema({
   },
   password: String
 });
+
+// Create User class
+const User = mongoose.model('user', userSchema);
+
+module.exports = User;
