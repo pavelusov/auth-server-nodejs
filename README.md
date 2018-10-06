@@ -2,7 +2,8 @@
 
 #### First installation
 
-npm i -s express mongoose morgan body-parser
+npm i -s express mongoose morgan body-parser nodemon
+
 
 
 
