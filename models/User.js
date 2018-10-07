@@ -38,6 +38,18 @@ userSchema.pre('save', function (next) {
   })
 });
 
+// 2. LOCAL STRATEGY.
+// 2.2. Реализация метода сравнения для паролей
+userSchema.methods.comparePassword = function (candidatePassword, callback) {
+
+  // 2.3. Сравнениваем пароли с помощью bcrypt
+  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+    if (err) return callback(err);
+    // 2.4. Возвращаем true|false
+    callback(null, isMatch);
+  });
+};
+
 // Create User class
 const User = mongoose.model('user', userSchema);
 

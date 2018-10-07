@@ -10,6 +10,13 @@ const getToken = (user) => {
   }, secret.forJwt);
 };
 
+// 2. LOCAL STRATEGY.
+// 2.9. создаем маршрут /signin
+exports.signin = (req, res, next) => {
+  // 2.10. В ответ на правильную пару логин/пароль отдаем токен
+  res.send({token: getToken(req.user)})
+};
+
 exports.signup = (req, res, next) => {
   const { body = {} } = req;
   const { email = '', password = '' } = body;
