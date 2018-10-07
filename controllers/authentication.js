@@ -1,4 +1,14 @@
+const jwt = require('jsonwebtoken');
+
 const User = require('../models/User');
+const secret = require('../config').secret;
+
+const getToken = (user) => {
+  return jwt.sign({
+    sub: user.id,
+    iat: new Date().getTime()
+  }, secret.forJwt);
+};
 
 exports.signup = (req, res, next) => {
   const { body = {} } = req;
@@ -30,8 +40,9 @@ exports.signup = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      // Вернуть сообщение что пользователь создан
-      res.status(201).json({message: "Пользователь создан"});
+      const token = getToken(user);
+      // Вернуть пользователю токен
+      res.status(201).json({token});
     });
   })
 };
