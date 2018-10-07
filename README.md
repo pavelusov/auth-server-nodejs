@@ -96,3 +96,7 @@ JSON Web Token + Secret String = User ID
 
 Система знает какие права и доступ к ресурсам есть у пользователя в данный момент.
 В ответ пользователь получает запрашиваемый ресурс.
+
+## Passport js
+
+ npm i passport passport-jwt
